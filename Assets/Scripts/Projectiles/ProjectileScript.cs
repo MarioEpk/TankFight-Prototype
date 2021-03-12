@@ -23,15 +23,17 @@ public class ProjectileScript : MonoBehaviour
 
     // Destroy object on trigger, if the object is tagged "Destructible"
     private void OnTriggerEnter2D(Collider2D collision)
-    {    
-        // add extra condition to make sure the shooting tank does not destroy itself
-        if(!collision.gameObject.CompareTag("Destructible"))
-        {
-            return;
-        }
-        Destroy(collision.gameObject);
-        Destroy(gameObject);
+    {
+        DestroyOnCollision(collision);
     }
 
+    protected virtual void DestroyOnCollision(Collider2D collision)
+    {
+        // add extra condition to make sure the shooting tank does not destroy itself
+        if (!collision.gameObject.CompareTag("Destructible")) return;
 
+        collision.gameObject.SetActive(false);
+        gameObject.SetActive(false);
+    }
+    
 }

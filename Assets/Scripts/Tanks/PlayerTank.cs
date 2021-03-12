@@ -6,19 +6,21 @@ public class PlayerTank : TankBase
 {
     [SerializeField]
     private float movementX;
+    [SerializeField]
     private float movementY;
+    private Vector3 facingDirection;
     [SerializeField]
     private float speed = 5f;
     private ProjectilePoolingScript poolingScript;
     [SerializeField]
     private bool isFiring = false;
-    private float fireDelay = 0.25f;
-    private float fireElapsedTime = 0f;
-
-
+    
+    
     private void Start()
     {
         poolingScript = gameObject.GetComponent<ProjectilePoolingScript>();
+        facingDirection = new Vector3(0, 0, 0);
+        fireDelay = 0.25f;
     }
 
 
@@ -26,6 +28,8 @@ public class PlayerTank : TankBase
     {
         movementX = Input.GetAxis("Horizontal");
         movementY = Input.GetAxis("Vertical");
+
+        SetRotationBasedOnMovement();
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -49,18 +53,21 @@ public class PlayerTank : TankBase
     // Custom helper methods
     private void Fire()
     {
-        if (!isFiring) return;
-        if(fireElapsedTime >= fireDelay)
-        {
+        if (!isFiring || fireElapsedTime < fireDelay) return;
             poolingScript.ActivateProjectile();
             fireElapsedTime = 0f;
-        }
     }
 
 
     private void Move() 
     {
         transform.Translate(movementX * speed * Time.deltaTime, movementY * speed * Time.deltaTime, 0);
+        
+    }
+
+    private void SetRotationBasedOnMovement()
+    {
+        facingDirection.z = movementX;
     }
 }
 

@@ -22,11 +22,9 @@ public class EnemyTank : TankBase
 
     private void Fire()
     {
-
         if (fireElapsedTime < fireDelay) return;
         
         poolingScript.ActivateProjectile();
         fireElapsedTime = 0f;
-        
     }
 }

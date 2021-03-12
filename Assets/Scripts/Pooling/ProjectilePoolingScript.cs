@@ -5,9 +5,9 @@ using UnityEngine;
 public class ProjectilePoolingScript : MonoBehaviour
 {
     public GameObject projectilePrefab;
-    private int pooledAmount = 35;
+    private int pooledAmount = 20;
     private List<GameObject> projectiles;
-    private float projectileYOffset = 3.5f;
+    
 
 
     // Pool projectiles on game start
@@ -30,7 +30,7 @@ public class ProjectilePoolingScript : MonoBehaviour
         {
             if (!projectiles[i].activeInHierarchy)
             {
-                projectiles[i].transform.position = transform.position + new Vector3(0, projectileYOffset, 0);
+                projectiles[i].transform.position = transform.position;
                 projectiles[i].transform.rotation = transform.rotation;
                 projectiles[i].SetActive(true);
                 break;
