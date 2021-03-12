@@ -10,14 +10,13 @@ public class PlayerTank : TankBase
     private float movementY;
     private Vector3 facingDirection;
     [SerializeField]
-    private float speed = 5f;
+    private float speed = 500f;
     private ProjectilePoolingScript poolingScript;
     [SerializeField]
     private bool isFiring = false;
     private Rigidbody2D playerRb;
     [SerializeField]
-    private float rotationSpeed = 5f;
-    private Vector3 rotationDirection;
+    
 
 
     private bool isFacingLeft = false;
@@ -47,7 +46,7 @@ public class PlayerTank : TankBase
     void FixedUpdate()
     {
         // reseting rotation direction, so we can correctly rotate to where we need to go
-        rotationDirection = new Vector3(0, 0, 0);
+        
         MovePlayer();
         Fire();
         fireElapsedTime += Time.deltaTime;
@@ -65,24 +64,29 @@ public class PlayerTank : TankBase
 
     private void MovePlayer()
     {
-
+        // tuto metodu upravit, rozdelit do ifov aj velocity a malo by to fungovat. Potom restrictnut diagonal movement a mame hotovy player movement
         playerRb.velocity = new Vector2(CalculateSpeed(movementX), CalculateSpeed(movementY));
         if (movementX > 0)
+            
         {
+            movementY = 0;
             FaceRight();
         }
-        if (movementX < -0)
+        if (movementX < 0)
         {
+            movementY = 0;
             FaceLeft();
             
         }
         if (movementY < 0)
         {
+            movementX = 0;
             FaceDown();
         }
 
-        if (movementY > -0)
+        if (movementY > 0)
         {
+            movementX = 0;
             FaceUp();
         }
 

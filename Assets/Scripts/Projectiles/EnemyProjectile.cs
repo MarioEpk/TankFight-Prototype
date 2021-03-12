@@ -19,10 +19,11 @@ public class EnemyProjectile : ProjectileScript
 
     private void CheckAndDestroy(Collider2D collision)
     {
-        if (collision.gameObject.name == objectName) return;
+        if (collision.gameObject.name.Contains(objectName)) return;
 
         collision.gameObject.SetActive(false);
         gameObject.SetActive(false);
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
