@@ -7,17 +7,26 @@ public class ProjectileScript : MonoBehaviour
     [SerializeField]
     private float speed = 15f;
 
+    private void Start()
+    {
+        StartCoroutine(Inactivate(gameObject));
+    }
+
     void FixedUpdate()
     {
         transform.Translate(0, speed * Time.deltaTime, 0);
-        StartCoroutine(Inactivate());
+        
     }
 
-    
-    IEnumerator Inactivate()
+
+    IEnumerator Inactivate(GameObject projectile)
     {
-        yield return new WaitForSeconds(4);
-        gameObject.SetActive(false);
+        while (true)
+        {
+            yield return new WaitForSeconds(4);
+            projectile.SetActive(false);
+        }
+    
     }
 
 

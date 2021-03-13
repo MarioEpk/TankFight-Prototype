@@ -4,33 +4,35 @@ using UnityEngine;
 
 public class SpawnManagerScript : MonoBehaviour
 {
+    
     // Start is called before the first frame update
     [SerializeField]
     private GameObject enemyPrefab;
     void Start()
     {
-        StartCoroutine(SpawnEnemy());
-        
+        StartCoroutine(SpawnEnemy(enemyPrefab));
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         
     }
 
-    IEnumerator SpawnEnemy()
+    IEnumerator SpawnEnemy(GameObject prefab)
     {
-        Instantiate(enemyPrefab);
-        enemyPrefab.transform.position = GenerateRandomSpawnPosition();
-        yield return new WaitForSeconds(5);
-        
+        while (true)
+        {
+            Instantiate(prefab);
+            prefab.transform.position = GenerateRandomSpawnPosition();
+            yield return new WaitForSeconds(5f);
+        }
     }
 
     private Vector2 GenerateRandomSpawnPosition()
     {
         float locX = Random.Range(-10, 10);
-        float locY = Random.Range(-10, 10);
+        float locY = Random.Range(-10, 10); 
 
         return new Vector2(locX, locY);
 

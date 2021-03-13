@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 3976929244833050766}
   - component: {fileID: 3976929244833050765}
   - component: {fileID: 3976929244833050764}
-  - component: {fileID: 3994594190803740783}
   - component: {fileID: 8607688564664891268}
   - component: {fileID: 332850869869293504}
   - component: {fileID: 597970229}
   - component: {fileID: 6976481440660727173}
+  - component: {fileID: 4130839061517986532}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Destructible
@@ -32,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3976929244833050771}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: -1, z: 0}
+  m_LocalPosition: {x: 2, y: -10, z: 0}
   m_LocalScale: {x: 15, y: 15, z: 15}
   m_Children: []
   m_Father: {fileID: 0}
@@ -153,20 +153,6 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
---- !u!114 &3994594190803740783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3976929244833050771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  target: {fileID: 2310456699144054587, guid: 1ef321df18b9704449f968ce83819e7a, type: 3}
 --- !u!114 &8607688564664891268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,3 +226,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4130839061517986532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3976929244833050771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be26f598d864c1488263b0ab505220d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 20
