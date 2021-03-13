@@ -9,8 +9,8 @@ public class SpawnManagerScript : MonoBehaviour
     private GameObject enemyPrefab;
     void Start()
     {
-        Instantiate(enemyPrefab);
-        //enemyPrefab.transform.position = GenerateRandomSpawnPosition();
+        StartCoroutine(SpawnEnemy());
+        
     }
 
     // Update is called once per frame
@@ -21,9 +21,10 @@ public class SpawnManagerScript : MonoBehaviour
 
     IEnumerator SpawnEnemy()
     {
-        yield return new WaitForSeconds(10);
         Instantiate(enemyPrefab);
         enemyPrefab.transform.position = GenerateRandomSpawnPosition();
+        yield return new WaitForSeconds(5);
+        
     }
 
     private Vector2 GenerateRandomSpawnPosition()
