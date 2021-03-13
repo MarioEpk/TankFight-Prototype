@@ -10,22 +10,12 @@ public class PlayerTank : TankBase
     private float movementY;
     private Vector3 facingDirection;
     [SerializeField]
-    private float speed = 500f;
+    private float speed = 10f;
     private ProjectilePoolingScript poolingScript;
     [SerializeField]
     private bool isFiring = false;
     private Rigidbody2D playerRb;
-    [SerializeField]
     
-
-
-    private bool isFacingLeft = false;
-    private bool isFacingRight = false;
-    private bool isFacingUp = false;
-    private bool isFacingDown = false;
-
-
-
 
     private void Start()
     {
@@ -38,7 +28,6 @@ public class PlayerTank : TankBase
 
     void Update()
     {
-        
         GetPlayerInput();
     }
 
@@ -61,36 +50,36 @@ public class PlayerTank : TankBase
         fireElapsedTime = 0f;
     }
 
-
+    // MovePlayer() restricts diagonal movement, and also make player object rotate to the direction it's curently moving
     private void MovePlayer()
     {
-        // tuto metodu upravit, rozdelit do ifov aj velocity a malo by to fungovat. Potom restrictnut diagonal movement a mame hotovy player movement
-        playerRb.velocity = new Vector2(CalculateSpeed(movementX), CalculateSpeed(movementY));
+
         if (movementX > 0)
-            
-        {
-            movementY = 0;
+        {    
+            playerRb.MovePosition(playerRb.position + new Vector2(CalculateSpeed(movementX), 0));
             FaceRight();
         }
         if (movementX < 0)
         {
-            movementY = 0;
-            FaceLeft();
             
+            playerRb.MovePosition(playerRb.position + new Vector2(CalculateSpeed(movementX), 0));
+            FaceLeft();   
         }
         if (movementY < 0)
         {
-            movementX = 0;
+            
+            playerRb.MovePosition(playerRb.position + new Vector2(0, CalculateSpeed(movementY)));
             FaceDown();
         }
 
         if (movementY > 0)
         {
-            movementX = 0;
+            
+            playerRb.MovePosition(playerRb.position + new Vector2(0, CalculateSpeed(movementY)));
             FaceUp();
         }
-
     }
+
 
     private void FaceUp()
     {
@@ -115,10 +104,10 @@ public class PlayerTank : TankBase
 
     private void GetPlayerInput()
     {
-        movementX = Input.GetAxis("Horizontal");
-        movementY = Input.GetAxis("Vertical");
-
-
+        movementX = Input.GetAxisRaw("Horizontal");
+        movementY = Input.GetAxisRaw("Vertical");
+        
+      
         if (Input.GetKeyDown(KeyCode.Space))
         {
             isFiring = true;
@@ -130,11 +119,11 @@ public class PlayerTank : TankBase
         
     }
 
+
     private float CalculateSpeed(float movement)
     {
         return movement * Time.deltaTime * speed;
     }
-
 }
     
 
