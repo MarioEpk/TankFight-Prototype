@@ -21,9 +21,13 @@ public class PlayerProjectile : ProjectileScript
     {
         if (collision.gameObject.name == objectName) return;
 
-        Destroy(collision.gameObject);
+        collision.gameObject.SetActive(false);
         gameObject.SetActive(false);
-        UpdateScore();
+        
+        if (collision.gameObject.name.Contains("Enemy"))
+        {
+            ScoreManager.UpdateScore(1);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -31,9 +35,5 @@ public class PlayerProjectile : ProjectileScript
         DeactivateDestructibles(collision);
     }
 
-    private void UpdateScore()
-    {
-        GameManager.score += 1;
-    }
 
 }
