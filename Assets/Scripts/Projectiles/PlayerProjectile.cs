@@ -20,7 +20,7 @@ public class PlayerProjectile : ProjectileScript
     private void CheckAndDestroy(Collider2D collision)
     {
         // to not destroy self
-        if (collision.gameObject.name == objectName) return;
+        if (collision.gameObject.name.Equals(objectName)) return;
 
         collision.gameObject.SetActive(false);
         gameObject.SetActive(false);

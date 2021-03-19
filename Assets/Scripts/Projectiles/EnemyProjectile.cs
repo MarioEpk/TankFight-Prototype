@@ -30,7 +30,7 @@ public class EnemyProjectile : ProjectileScript
         gameObject.SetActive(false);
 
         // if player is hit, set isPlayerAlive to false
-        if (collision.gameObject.name.Contains("Player"))
+        if (collision.gameObject.name.Equals("Player"))
         {
             spawnManager.SetIsAlive(false);
         }
