@@ -10,7 +10,7 @@ public class PlayerProjectile : ProjectileScript
     private const string objectName = "Player";
 
     // Start is called before the first frame update
-    protected override void DestroyOnCollision(Collider2D collision)
+    protected override void DeactivateDestructibles(Collider2D collision)
     {
         if (!collision.gameObject.CompareTag("Destructible")) return;
 
@@ -21,13 +21,19 @@ public class PlayerProjectile : ProjectileScript
     {
         if (collision.gameObject.name == objectName) return;
 
-        collision.gameObject.SetActive(false);
+        Destroy(collision.gameObject);
         gameObject.SetActive(false);
+        UpdateScore();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        DestroyOnCollision(collision);
+        DeactivateDestructibles(collision);
+    }
+
+    private void UpdateScore()
+    {
+        GameManager.score += 1;
     }
 
 }

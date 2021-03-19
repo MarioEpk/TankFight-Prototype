@@ -15,6 +15,7 @@ TagManager:
   - PlayerRay
   - Rocket
   - Destructible
+  - Indestructible
   layers:
   - Default
   - TransparentFX

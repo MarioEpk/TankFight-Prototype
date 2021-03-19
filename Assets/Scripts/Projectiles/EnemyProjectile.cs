@@ -10,7 +10,7 @@ public class EnemyProjectile : ProjectileScript
     private const string objectName = "Enemy";
 
     // Start is called before the first frame update
-    protected override void DestroyOnCollision(Collider2D collision)
+    protected override void DeactivateDestructibles(Collider2D collision)
     {
         if (!collision.gameObject.CompareTag("Destructible")) return;
         Debug.Log(collision.gameObject.name);
@@ -28,7 +28,7 @@ public class EnemyProjectile : ProjectileScript
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        DestroyOnCollision(collision);
+        DeactivateDestructibles(collision);
     }
 
 }

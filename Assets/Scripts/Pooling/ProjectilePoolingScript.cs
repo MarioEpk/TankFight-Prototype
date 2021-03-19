@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// Attach this class on a object you want spawn projectiles on - dont forget to attach a prefab projectile of your choice to this scripts projectilePrefab
 public class ProjectilePoolingScript : MonoBehaviour
 {
     public GameObject projectilePrefab;
