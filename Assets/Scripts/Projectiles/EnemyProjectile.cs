@@ -8,8 +8,12 @@ public class EnemyProjectile : ProjectileScript
 {
     
     private const string objectName = "Enemy";
+    private SpawnManager spawnManager;
 
-    // Start is called before the first frame update
+    private void Start()
+    {
+        spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+    }
     protected override void DeactivateDestructibles(Collider2D collision)
     {
         if (!collision.gameObject.CompareTag("Destructible")) return;
@@ -19,10 +23,17 @@ public class EnemyProjectile : ProjectileScript
 
     private void CheckAndDestroy(Collider2D collision)
     {
+        // to not destroy self
         if (collision.gameObject.name.Contains(objectName)) return;
 
         collision.gameObject.SetActive(false);
         gameObject.SetActive(false);
+
+        // if player is hit, set isPlayerAlive to false
+        if (collision.gameObject.name.Contains("Player"))
+        {
+            spawnManager.SetIsAlive(false);
+        }
         
     }
 

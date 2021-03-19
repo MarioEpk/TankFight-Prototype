@@ -2,31 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnManagerScript : MonoBehaviour
+public class SpawnManager : MonoBehaviour
 {
-    
-    // Start is called before the first frame update
+    [SerializeField]
+    private bool isPlayerAlive = true;
     [SerializeField]
     private GameObject enemyPrefab;
-    void Start()
+    [SerializeField]
+    private GameObject Death;
+
+
+    private void Awake()
     {
+       
+
         StartCoroutine(SpawnEnemy(enemyPrefab));
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+
+    private void Update()
     {
-        
+        OnPlayerDeath();
     }
 
     IEnumerator SpawnEnemy(GameObject prefab)
     {
-        while (true)
+        while (isPlayerAlive)
         {
             Instantiate(prefab);
             prefab.transform.position = GenerateRandomSpawnPosition();
             yield return new WaitForSeconds(5f);
         }
+
     }
 
     private Vector2 GenerateRandomSpawnPosition()
@@ -36,5 +43,19 @@ public class SpawnManagerScript : MonoBehaviour
 
         return new Vector2(locX, locY);
 
+    }
+
+
+    // activating Death object on player's death, giving the player an option to restart
+    private void OnPlayerDeath()
+    {
+        if (isPlayerAlive) return;
+        Death.SetActive(true);
+    }
+
+
+    public void SetIsAlive(bool isAlive)
+    {
+        isPlayerAlive = isAlive;
     }
 }

@@ -5,11 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField]
+    private string gameSceneName = "TankFightPrototype";
     public void PlayGame()
     {
         try
         {
-            SceneManager.LoadScene("TankFightPrototype");
+            SceneManager.LoadScene(gameSceneName);
         }
         catch
         {

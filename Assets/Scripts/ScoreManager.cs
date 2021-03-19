@@ -5,27 +5,10 @@ using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
-    private static ScoreManager _instance;
     [SerializeField]
     private TextMeshProUGUI scoreText;
     [SerializeField]
     private static int score;
-
-    
-    public static ScoreManager Instance { get { return _instance; } }
-
-
-    private void Awake()
-    {
-        if (_instance != null && _instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            _instance = this;
-        }
-    }
 
 
     private void HandleScore()
