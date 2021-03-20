@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1075574605283172538}
   - component: {fileID: 1075574605283172541}
   - component: {fileID: 1075574605283172540}
+  - component: {fileID: -1789595952441060235}
   m_Layer: 8
   m_Name: IronObstacle
   m_TagString: Indestructible
@@ -131,3 +132,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &-1789595952441060235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075574605283172543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff1efcd4f2de77542ba8c37969d15e24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
